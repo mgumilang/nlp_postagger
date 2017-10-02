@@ -77,3 +77,12 @@ eval6 = baseline_tagger.evaluate(brown_tagged_sents)
 print("Akurasi lookup tagger (size=1000) + backoff tagger:")
 print(eval6)
 print()
+
+size = int(len(brown_tagged_sents) * 0.9)
+train_sents = brown_tagged_sents[:size]
+test_sents = brown_tagged_sents[size:]
+unigram_tagger = nltk.UnigramTagger(train_sents)
+eval7 = unigram_tagger.evaluate(test_sents)
+print("Akurasi unigram tagger:")
+print(eval7)
+print()
