@@ -28,3 +28,20 @@ eval = default_tagger.evaluate(brown_tagged_sents)
 print("Akurasi default tagger:")
 print(eval)
 print()
+
+# Cara 2: regex tagger
+patterns = [
+    (r'.*ing$', 'VBG'),               # gerunds
+    (r'.*ed$', 'VBD'),                # simple past
+    (r'.*es$', 'VBZ'),                # 3rd singular present
+    (r'.*ould$', 'MD'),               # modals
+    (r'.*\'s$', 'NN$'),               # possessive nouns
+    (r'.*s$', 'NNS'),                 # plural nouns
+    (r'^-?[0-9]+(.[0-9]+)?$', 'CD'),  # cardinal numbers
+    (r'.*', 'NN')                     # nouns (default)
+]
+regex_tagger = nltk.RegexpTagger(patterns)
+eval2 = regex_tagger.evaluate(brown_tagged_sents)
+print("Akurasi regex tagger:")
+print(eval2)
+print()
