@@ -2,6 +2,7 @@ import nltk
 import re
 from nltk.corpus import brown
 
+# POS-Tagger dengan HMM dengan data .conllu dari universal depedencies
 file = open("id-ud-train.conllu", 'r', encoding="Latin1")
 tagged_idn = []
 i = 0
@@ -131,3 +132,9 @@ print("Test size  =", len(idn_tagged_sents))
 
 acc = sum_hit / count_tag
 print("Akurasi =", acc)
+print()
+
+in_user = input("Masukkan kalimat yang ingin di POS-tag:\n")
+in_user = nltk.word_tokenize(in_user)
+res = classify(in_user)
+print(res)

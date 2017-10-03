@@ -8,17 +8,6 @@ Created on Mon Oct  2 12:04:02 2017
 import nltk
 from nltk.corpus import brown
 
-text1 = nltk.word_tokenize("I have been to Hawaii twice with my family")
-print(nltk.pos_tag(text1))
-print()
-
-text2 = nltk.word_tokenize("She leaves the house to get the leaves")
-print(nltk.pos_tag(text2))
-print()
-
-print(brown.tagged_words())
-print()
-
 brown_tagged_sents = brown.tagged_sents(categories='news')
 brown_sents = brown.sents(categories='news')
 size = int(len(brown_tagged_sents) * 0.9)
@@ -100,3 +89,21 @@ eval9 = t2.evaluate(test_sents)
 print("Akurasi combined tagger:")
 print(eval9)
 print()
+
+in_user = input("Masukkan kalimat yang ingin di POS-tag:\n")
+pil = int(input("\nPilih metode yang diinginkan: \n1. DefaultTagger \n2. UnigramTagger \n3. RegexTagger \n4. BigramTagger \n5. Combined Tagger\n"))
+in_user = nltk.word_tokenize(in_user)
+res = []
+if pil == 1:
+	res = default_tagger.tag(in_user)
+elif pil == 2:
+	res = unigram_tagger.tag(in_user)
+elif pil == 3:
+	res = regex_tagger.tag(in_user)
+elif pil == 4:
+	res = bigram_tagger.tag(in_user)
+elif pil == 5:
+	res = t2.tag(in_user)
+else:
+	print("Input tidak sesuai.")
+print(res)

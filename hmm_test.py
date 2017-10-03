@@ -106,3 +106,9 @@ print("Test size  =", len(test_sents))
 
 acc = sum_hit / count_tag
 print("Akurasi =", acc)
+print()
+
+in_user = input("Masukkan kalimat yang ingin di POS-tag:\n")
+in_user = nltk.word_tokenize(in_user)
+res = classify(in_user)
+print(res)

@@ -2,6 +2,7 @@ import nltk
 import sys
 import re
 
+# Berbagai macam POS-tagger dengan input .conllu dari universal dependencies
 file = open("id-ud-train.conllu", 'r', encoding="Latin1")
 idn_tagged_sents = []
 idn_tagged_words = []
@@ -35,8 +36,6 @@ for line in file1:
 # Cara 1
 default_tagger = nltk.DefaultTagger('NOUN')
 eval = default_tagger.evaluate(idn_tagged_sents)
-text1 = nltk.word_tokenize("Saya sudah pernah pergi ke hawaii")
-print(default_tagger.tag(text1))
 print("Akurasi default tagger:")
 print(eval)
 print()
@@ -94,3 +93,19 @@ eval9 = baseline_tagger2.evaluate(idn_tagged_sents)
 print("Akurasi combined tagger: ")
 print(eval9)
 print()
+
+in_user = input("Masukkan kalimat yang ingin di POS-tag:\n")
+pil = int(input("\nPilih metode yang diinginkan: \n1. DefaultTagger \n2. UnigramTagger \n3. BigramTagger \n4. Combined Tagger\n"))
+in_user = nltk.word_tokenize(in_user)
+res = []
+if pil == 1:
+	res = default_tagger.tag(in_user)
+elif pil == 2:
+	res = unigram_tagger.tag(in_user)
+elif pil == 3:
+	res = bigram_tagger.tag(in_user)
+elif pil == 4:
+	res = baseline_tagger2.tag(in_user)
+else:
+	print("Input tidak sesuai.")
+print(res)
